@@ -1,0 +1,385 @@
+/* Cyberpunk BotCartridge theme overrides. */
+
+[data-theme="cyberpunk"] .bot-cartridge,
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-pm),
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-sp),
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-ss),
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-jr) {
+  --card-cut: var(--cartridge-chamfer, 30px);
+  --card-layer-gap: 5px;
+  --card-cut-mid: calc(var(--card-cut) - var(--card-layer-gap));
+  --screen-cut: 16px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: 0;
+  overflow: visible;
+  font-family: "Bahnschrift", "Segoe UI Variable Display", "Segoe UI", Arial, sans-serif;
+  --role-accent: #00e5ff;
+  --role-accent-soft: rgba(0, 229, 255, 0.22);
+  --role-accent-glow: rgba(0, 229, 255, 0.5);
+}
+
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-pm) {
+  --role-accent: #fbbf24;
+  --role-accent-soft: rgba(251, 191, 36, 0.2);
+  --role-accent-glow: rgba(251, 191, 36, 0.5);
+}
+
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-sp) {
+  --role-accent: #a855f7;
+  --role-accent-soft: rgba(168, 85, 247, 0.2);
+  --role-accent-glow: rgba(168, 85, 247, 0.52);
+}
+
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-ss) {
+  --role-accent: #14b8a6;
+  --role-accent-soft: rgba(20, 184, 166, 0.2);
+  --role-accent-glow: rgba(20, 184, 166, 0.5);
+}
+
+[data-theme="cyberpunk"] .bot-cartridge:has(.cartridge-role-jr) {
+  --role-accent: #22c55e;
+  --role-accent-soft: rgba(34, 197, 94, 0.2);
+  --role-accent-glow: rgba(34, 197, 94, 0.55);
+}
+
+[data-theme="cyberpunk"] .bot-cartridge::before,
+[data-theme="cyberpunk"] .bot-cartridge::after {
+  content: none;
+  display: none;
+}
+
+[data-theme="cyberpunk"] .cartridge-frame {
+  display: none;
+}
+
+[data-theme="cyberpunk"] .cartridge-theme-cover {
+  position: absolute;
+  left: var(--cartridge-cover-x, 0);
+  top: var(--cartridge-cover-y, 0);
+  z-index: 3;
+  display: block;
+  width: var(--cartridge-cover-width, 222px);
+  height: var(--cartridge-cover-height, 154px);
+  pointer-events: none;
+  opacity: var(--cartridge-cover-emission-opacity, 1);
+  background: var(--cartridge-cover-emission-color, rgba(0, 229, 255, 0.92));
+  -webkit-mask-image: var(--cartridge-theme-cover-url);
+  mask-image: var(--cartridge-theme-cover-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  filter:
+    drop-shadow(0 0 var(--cartridge-cover-glow-radius, 3px) var(--cartridge-cover-glow-color, rgba(0, 229, 255, 0.7)))
+    drop-shadow(0 0 var(--cartridge-cover-strong-glow-radius, 10px) var(--cartridge-cover-glow-color, rgba(0, 229, 255, 0.24)));
+}
+
+[data-theme="cyberpunk"] .cartridge-neon-outline,
+[data-theme="cyberpunk"] .cartridge-theme-frame-accent {
+  display: none;
+}
+
+[data-theme="cyberpunk"] .cartridge-label,
+[data-theme="cyberpunk"] .cartridge-notch,
+[data-theme="cyberpunk"] .cartridge-contacts {
+  position: relative;
+  z-index: 4;
+}
+
+[data-theme="cyberpunk"] .bot-cartridge .cartridge-label {
+  transform: translate(var(--cartridge-label-x, 0), var(--cartridge-label-y, 0));
+  clip-path: polygon(var(--screen-cut) 0, calc(100% - var(--screen-cut)) 0, 100% var(--screen-cut), 100% calc(100% - var(--screen-cut)), calc(100% - var(--screen-cut)) 100%, var(--screen-cut) 100%, 0 calc(100% - var(--screen-cut)), 0 var(--screen-cut));
+  border: 0;
+  background: linear-gradient(180deg, rgba(7, 14, 29, 0.9), rgba(1, 5, 15, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(0, 229, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 77, 227, 0.08),
+    inset 0 0 18px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="cyberpunk"] .cartridge-label .cartridge-role-badge {
+  display: block;
+  transform: translate(var(--cartridge-role-badge-x, 0), var(--cartridge-role-badge-y, 0));
+  margin-bottom: 5px;
+  min-width: 20px;
+  padding: 1px 5px;
+  border-width: 1px;
+  border-radius: 3px;
+  border-color: var(--role-accent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--role-accent) 24%, transparent), rgba(2, 6, 23, 0.82));
+  color: var(--role-accent);
+  font-size: 10px;
+  line-height: 1.15;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.72),
+    0 0 8px var(--role-accent-glow),
+    inset 0 0 8px var(--role-accent-soft);
+}
+
+[data-theme="cyberpunk"] .cartridge-role-pm,
+[data-theme="cyberpunk"] .cartridge-role-sp,
+[data-theme="cyberpunk"] .cartridge-role-ss,
+[data-theme="cyberpunk"] .cartridge-role-jr {
+  color: var(--role-accent);
+}
+
+[data-theme="cyberpunk"] .cartridge-label strong {
+  display: block;
+  transform: translate(var(--cartridge-name-x, 0), var(--cartridge-name-y, 0));
+  color: #f8fbff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-shadow: 0 0 7px rgba(255, 255, 255, 0.22);
+}
+
+[data-theme="cyberpunk"] .cartridge-label small {
+  display: block;
+  transform: translate(var(--cartridge-model-x, 0), var(--cartridge-model-y, 0));
+  color: #00e5ff;
+  font-size: 10px;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.34);
+}
+
+[data-theme="cyberpunk"] .cartridge-label em {
+  display: block;
+  transform: translate(var(--cartridge-status-x, 0), var(--cartridge-status-y, 0));
+  margin-top: 2px;
+  color: #67e8f9;
+  font-size: 10px;
+  font-weight: 800;
+  text-shadow: 0 0 5px rgba(0, 229, 255, 0.28);
+}
+
+[data-theme="cyberpunk"] .cartridge-notch {
+  transform: translate(var(--cartridge-notch-x, 0), var(--cartridge-notch-y, 0));
+  width: 58px;
+  height: 12px;
+  border: 0;
+  clip-path: polygon(12% 0, 88% 0, 100% 50%, 88% 100%, 12% 100%, 0 50%);
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(7, 10, 24, 0.98)),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.38), rgba(0, 229, 255, 0.82) 48%, rgba(255, 77, 227, 0.34));
+  box-shadow:
+    0 0 0 1px rgba(0, 229, 255, 0.5),
+    0 0 8px rgba(0, 229, 255, 0.54),
+    0 0 12px rgba(255, 77, 227, 0.2),
+    inset 0 0 7px rgba(0, 229, 255, 0.2);
+}
+
+[data-theme="cyberpunk"] .cartridge-contacts {
+  opacity: 1;
+  background: transparent;
+}
+
+[data-theme="cyberpunk"] .cartridge-contacts-top .cartridge-contacts {
+  padding-bottom: 6px;
+  background:
+    linear-gradient(90deg, transparent 0 28px, rgba(0, 229, 255, 0.12) 28px calc(100% - 28px), transparent calc(100% - 28px)),
+    linear-gradient(180deg, rgba(3, 7, 18, 0.48), transparent);
+}
+
+[data-theme="cyberpunk"] .cartridge-contacts-bottom .cartridge-contacts {
+  padding-top: 6px;
+  background:
+    linear-gradient(90deg, transparent 0 28px, rgba(255, 77, 227, 0.09) 28px calc(100% - 28px), transparent calc(100% - 28px)),
+    linear-gradient(0deg, rgba(3, 7, 18, 0.42), transparent);
+}
+
+[data-theme="cyberpunk"] .cartridge-contacts i {
+  width: 6px;
+  height: 8px;
+  opacity: 0.68;
+  background: linear-gradient(180deg, #fde68a, #d97706);
+  box-shadow: 0 0 5px rgba(251, 191, 36, 0.52);
+}
+
+[data-theme="cyberpunk"] .cartridge-run-next-button,
+[data-theme="cyberpunk"] .fake-terminal-composer button {
+  border-radius: 3px;
+  border-color: rgba(0, 229, 255, 0.7);
+  color: #e0fbff;
+  background: linear-gradient(180deg, rgba(8, 20, 42, 0.96), rgba(2, 6, 23, 0.98));
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 208, 0.28),
+    0 0 12px rgba(0, 229, 255, 0.24),
+    inset 0 0 10px rgba(0, 229, 255, 0.08);
+}
+
+[data-theme="cyberpunk"] .cartridge-options .danger-action {
+  border-color: rgba(251, 146, 60, 0.85);
+  color: #ffe8bd;
+  background: linear-gradient(180deg, rgba(74, 30, 10, 0.95), rgba(26, 9, 5, 0.98));
+}
+
+[data-theme="cyberpunk"] .cartridge-options {
+  --option-cut: 8px;
+  border: 1px solid rgba(0, 229, 255, 0.72);
+  border-radius: 0;
+  clip-path: polygon(
+    var(--option-cut) 0,
+    calc(100% - var(--option-cut)) 0,
+    100% var(--option-cut),
+    100% calc(100% - var(--option-cut)),
+    calc(100% - var(--option-cut)) 100%,
+    var(--option-cut) 100%,
+    0 calc(100% - var(--option-cut)),
+    0 var(--option-cut)
+  );
+  background:
+    linear-gradient(135deg, rgba(244, 114, 208, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(3, 9, 22, 0.98), rgba(1, 4, 12, 0.98));
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 208, 0.22),
+    0 0 18px rgba(0, 229, 255, 0.28),
+    inset 0 0 18px rgba(0, 229, 255, 0.08);
+}
+
+[data-theme="cyberpunk"] .cartridge-options button {
+  --button-cut: 6px;
+  position: relative;
+  min-height: 32px;
+  border: 1px solid rgba(0, 229, 255, 0.72);
+  border-radius: 0;
+  clip-path: polygon(
+    var(--button-cut) 0,
+    calc(100% - var(--button-cut)) 0,
+    100% var(--button-cut),
+    100% calc(100% - var(--button-cut)),
+    calc(100% - var(--button-cut)) 100%,
+    var(--button-cut) 100%,
+    0 calc(100% - var(--button-cut)),
+    0 var(--button-cut)
+  );
+  color: #dffbff;
+  background:
+    linear-gradient(90deg, rgba(0, 229, 255, 0.14), transparent 18%, rgba(244, 114, 208, 0.12) 82%, transparent),
+    linear-gradient(180deg, rgba(8, 20, 42, 0.96), rgba(2, 6, 23, 0.98));
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.62);
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 208, 0.18),
+    0 0 10px rgba(0, 229, 255, 0.2),
+    inset 0 0 12px rgba(0, 229, 255, 0.08);
+}
+
+[data-theme="cyberpunk"] .cartridge-options button:hover {
+  border-color: rgba(103, 232, 249, 0.95);
+  filter: brightness(1.12);
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 208, 0.28),
+    0 0 14px rgba(0, 229, 255, 0.34),
+    inset 0 0 14px rgba(0, 229, 255, 0.12);
+}
+
+[data-theme="cyberpunk"] .cartridge-options .danger-action {
+  border-color: rgba(251, 146, 60, 0.92);
+  color: #ffe8bd;
+  background:
+    linear-gradient(90deg, rgba(251, 146, 60, 0.2), transparent 22%, rgba(244, 63, 94, 0.16) 82%, transparent),
+    linear-gradient(180deg, rgba(74, 30, 10, 0.95), rgba(26, 9, 5, 0.98));
+  text-shadow: 0 0 7px rgba(251, 146, 60, 0.58);
+  box-shadow:
+    0 0 0 1px rgba(244, 63, 94, 0.24),
+    0 0 12px rgba(251, 146, 60, 0.26),
+    inset 0 0 12px rgba(251, 146, 60, 0.1);
+}
+
+[data-theme="cyberpunk"] .cartridge-run-next-button {
+  border-color: rgba(34, 197, 94, 0.8);
+  color: #dcfce7;
+  background: linear-gradient(180deg, rgba(20, 83, 45, 0.95), rgba(3, 24, 18, 0.98));
+}
+
+[data-theme="cyberpunk"] .fake-terminal {
+  z-index: 40;
+  opacity: 1;
+  visibility: visible;
+  color: var(--terminal-text);
+  background: var(--terminal-bg);
+  border-color: var(--role-accent, var(--terminal-border));
+  box-shadow:
+    0 0 0 1px var(--role-accent-soft, rgba(244, 114, 208, 0.28)),
+    0 0 16px var(--role-accent-glow, rgba(0, 229, 255, 0.28)),
+    inset 0 0 18px rgba(0, 229, 255, 0.08);
+}
+
+[data-theme="cyberpunk"] .terminal-role-pm {
+  --role-accent: #fbbf24;
+  --role-accent-soft: rgba(251, 191, 36, 0.2);
+  --role-accent-glow: rgba(251, 191, 36, 0.5);
+}
+
+[data-theme="cyberpunk"] .terminal-role-sp {
+  --role-accent: #a855f7;
+  --role-accent-soft: rgba(168, 85, 247, 0.2);
+  --role-accent-glow: rgba(168, 85, 247, 0.52);
+}
+
+[data-theme="cyberpunk"] .terminal-role-ss {
+  --role-accent: #14b8a6;
+  --role-accent-soft: rgba(20, 184, 166, 0.2);
+  --role-accent-glow: rgba(20, 184, 166, 0.5);
+}
+
+[data-theme="cyberpunk"] .terminal-role-jr {
+  --role-accent: #22c55e;
+  --role-accent-soft: rgba(34, 197, 94, 0.2);
+  --role-accent-glow: rgba(34, 197, 94, 0.55);
+}
+
+[data-theme="cyberpunk"] .fake-terminal-stream {
+  scrollbar-width: thin;
+  scrollbar-color: var(--role-accent, #00e5ff) rgba(3, 7, 18, 0.88);
+}
+
+[data-theme="cyberpunk"] .fake-terminal-stream::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+[data-theme="cyberpunk"] .fake-terminal-stream::-webkit-scrollbar-track {
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(0, 229, 255, 0.06), transparent 45%, rgba(244, 114, 208, 0.05)),
+    rgba(3, 7, 18, 0.92);
+}
+
+[data-theme="cyberpunk"] .fake-terminal-stream::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(3, 7, 18, 0.96);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32), transparent 34%),
+    var(--role-accent, #00e5ff);
+  box-shadow:
+    0 0 8px var(--role-accent-glow, rgba(0, 229, 255, 0.48)),
+    inset 0 0 5px rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="cyberpunk"] .fake-terminal-stream::-webkit-scrollbar-corner {
+  background: rgba(3, 7, 18, 0.92);
+}
+
+[data-theme="cyberpunk"] .fake-terminal-docked .fake-terminal-stream {
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+[data-theme="cyberpunk"] .fake-terminal-docked .fake-terminal-stream::-webkit-scrollbar {
+  display: none;
+}
+
+[data-theme="cyberpunk"] .fake-terminal header,
+[data-theme="cyberpunk"] .fake-terminal-composer input {
+  color: #e0fbff;
+  background: rgba(3, 7, 18, 0.86);
+  border-color: rgba(0, 229, 255, 0.36);
+}
+
+[data-theme="cyberpunk"] .terminal-muted { color: var(--terminal-muted); }

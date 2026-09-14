@@ -1,0 +1,135 @@
+/* Cyberpunk TaskSlidePanels theme overrides. */
+
+[data-theme="cyberpunk"] .task-panel-tabs {
+  right: var(--dashboard-edge-x);
+  bottom: var(--task-tabs-bottom);
+  gap: 14px;
+  align-items: flex-end;
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs button {
+  --task-tab-mask: url('../assets/active-tasks.svg');
+  --task-tab-accent: #00ff8a;
+  --task-tab-accent-soft: rgba(0, 255, 138, 0.58);
+  --task-tab-accent-core: rgba(0, 255, 138, 1);
+  position: relative;
+  width: var(--task-tab-button-width, 152px);
+  height: var(--task-tab-button-height, 78px);
+  min-height: var(--task-tab-button-height, 78px);
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 0;
+  color: rgba(234, 255, 245, 0.84);
+  background: transparent;
+  box-shadow: none;
+  filter:
+    drop-shadow(0 0 4px var(--task-tab-accent-core))
+    drop-shadow(0 0 14px var(--task-tab-accent-soft));
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 0 3px rgba(255, 255, 255, 0.14),
+    0 0 6px color-mix(in srgb, var(--task-tab-accent) 38%, transparent);
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs button::before,
+[data-theme="cyberpunk"] .task-panel-tabs button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  -webkit-mask-image: var(--task-tab-mask);
+  mask-image: var(--task-tab-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs button::before {
+  z-index: -3;
+  background:
+    radial-gradient(circle at 72% 26%, rgba(255, 255, 255, 0.08), transparent 38%),
+    linear-gradient(180deg, rgba(2, 10, 24, 0.98), rgba(1, 5, 14, 0.99));
+  filter:
+    drop-shadow(0 0 3px rgba(2, 10, 24, 0.95))
+    drop-shadow(0 0 9px var(--task-tab-accent-soft));
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs button::after {
+  inset: -1px;
+  z-index: -2;
+  background: var(--task-tab-accent-core);
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 2px var(--task-tab-accent-core))
+    drop-shadow(0 0 7px var(--task-tab-accent-core))
+    drop-shadow(0 0 18px var(--task-tab-accent-soft))
+    drop-shadow(0 0 34px var(--task-tab-accent-soft));
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs button:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 5px var(--task-tab-accent-core),
+    0 0 13px var(--task-tab-accent-soft),
+    0 0 26px var(--task-tab-accent-soft);
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs button:active {
+  transform: translateY(0);
+}
+
+[data-theme="cyberpunk"] .task-panel-tab-label {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: start;
+  gap: 0;
+  line-height: 0.9;
+  transform: translate(var(--task-tab-label-x, 0), var(--task-tab-label-y, 0));
+}
+
+[data-theme="cyberpunk"] .task-panel-tab-label span {
+  display: block;
+}
+
+[data-theme="cyberpunk"] .task-panel-tabs [data-task-panel-tab="next"] {
+  --task-tab-mask: url('../assets/Todo Tasks.svg');
+  --task-tab-accent: #ffe45c;
+  --task-tab-accent-soft: rgba(255, 228, 92, 0.62);
+  --task-tab-accent-core: rgba(255, 228, 92, 1);
+  color: #fff7d6;
+}
+
+[data-theme="cyberpunk"] .task-panel-icon {
+  z-index: 1;
+  width: 19px;
+  height: 19px;
+}
+
+[data-theme="cyberpunk"] .task-panel-icon-active,
+[data-theme="cyberpunk"] .task-panel-icon-next {
+  border-color: currentColor;
+  background: rgba(2, 10, 24, 0.66);
+  box-shadow:
+    0 0 0 1px rgba(2, 10, 24, 0.82),
+    0 0 8px var(--task-tab-accent-soft);
+}
+
+[data-theme="cyberpunk"] .task-panel-icon-active::before,
+[data-theme="cyberpunk"] .task-panel-icon-active::after {
+  background: currentColor;
+}
+
+[data-theme="cyberpunk"] .task-panel-icon-next::before {
+  border-color: currentColor;
+}

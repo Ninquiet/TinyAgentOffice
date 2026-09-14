@@ -1,0 +1,486 @@
+/*
+ * The blueprint tray.
+ *
+ * Every value here is a fallback for a theme knob. The `default` theme is an
+ * empty composition, so what this file declares is what an unthemed tray looks
+ * like -- which means these have to be real values, not placeholders.
+ *
+ * The tray reads `--tray-*` custom properties set by trayCompositionToStyle.
+ * Nothing about the layout is decided in the component.
+ */
+
+.blueprint-tray-button {
+  position: relative;
+  left: var(--tray-button-x, 0px);
+  top: var(--tray-button-y, 0px);
+  width: min(
+    var(--tray-button-width, 152px),
+    calc(100vw - var(--dashboard-edge-x, 16px) - var(--dashboard-edge-x, 16px))
+  );
+  max-width: calc(100vw - var(--dashboard-edge-x, 16px) - var(--dashboard-edge-x, 16px));
+  height: var(--tray-button-height, 52px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--tray-button-background, rgba(12, 14, 26, 0.9));
+  color: var(--tray-button-color, rgba(230, 235, 255, 0.92));
+  border: var(--tray-button-border-width, 2px) solid var(--tray-button-border-color, rgba(180, 190, 220, 0.5));
+  border-radius: var(--tray-button-radius, 0px);
+  clip-path: var(--tray-button-clip-path, none);
+  font-size: var(--tray-button-font-size, 13px);
+  letter-spacing: var(--tray-button-letter-spacing, 0.12em);
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  overflow: visible;
+}
+
+.blueprint-tray-button:hover {
+  filter: brightness(1.15);
+}
+
+[data-theme="cyberpunk"] .blueprint-tray-button {
+  --cyberpunk-blueprint-button-brightness: brightness(1);
+  border: 0;
+  padding: 2px;
+  background: linear-gradient(115deg, #22e8ff 0%, #7c6cff 48%, #ff3ad7 100%);
+  box-shadow:
+    0 0 18px rgba(34, 232, 255, 0.16),
+    0 0 24px rgba(255, 58, 215, 0.12);
+  filter: var(--cyberpunk-blueprint-button-brightness);
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    filter 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+[data-theme="cyberpunk"] .blueprint-tray-button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  z-index: -1;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+  background:
+    linear-gradient(105deg, rgba(34, 232, 255, 0.12), transparent 42%, rgba(255, 58, 215, 0.12)),
+    var(--tray-button-background, rgba(10, 14, 30, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(248, 251, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 58, 215, 0.1);
+}
+
+[data-theme="cyberpunk"] .blueprint-tray-button > * {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="cyberpunk"] .blueprint-tray-button:hover {
+  --cyberpunk-blueprint-button-brightness: brightness(1.18) saturate(1.12);
+  transform: translateX(-2px);
+  box-shadow:
+    0 0 22px rgba(34, 232, 255, 0.26),
+    0 0 30px rgba(255, 58, 215, 0.2);
+}
+
+[data-theme="cyberpunk"] .blueprint-tray-button[data-open="true"] {
+  background: linear-gradient(115deg, #2cff9a 0%, #22e8ff 52%, #ff3ad7 100%);
+}
+
+[data-theme="cyberpunk"] .blueprint-tray-button-glyph {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 1px solid rgba(34, 232, 255, 0.72);
+  color: #7cf7ff;
+  background: rgba(34, 232, 255, 0.08);
+  box-shadow: inset 0 0 8px rgba(34, 232, 255, 0.12);
+}
+
+.blueprint-tray-button:focus-visible {
+  outline: 3px solid var(--tray-edge-color, rgba(180, 190, 220, 0.7));
+  outline-offset: 3px;
+}
+
+.blueprint-tray-button-glyph {
+  font-size: var(--tray-button-glyph-size, 15px);
+  line-height: 1;
+}
+
+.blueprint-tray-button-count {
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--tray-count-background, rgba(180, 190, 220, 0.8));
+  color: var(--tray-count-color, rgba(10, 12, 20, 0.95));
+  font-size: 11px;
+  line-height: 17px;
+  text-align: center;
+}
+
+.blueprint-tray {
+  --blueprint-tray-safe-top: calc(
+    var(--dock-top, 24px) + var(--builder-button-height, 74px) +
+    var(--builder-control-gap, 10px) + var(--tray-button-height, 52px) +
+    var(--blueprint-tray-safe-gap, 12px)
+  );
+  --blueprint-tray-safe-bottom: calc(
+    var(--task-tabs-bottom, 22px) + var(--task-tab-button-height, 42px) +
+    var(--blueprint-tray-safe-gap, 12px)
+  );
+  position: fixed;
+  top: var(--blueprint-tray-safe-top);
+  bottom: var(--tray-bottom, var(--blueprint-tray-safe-bottom));
+  width: min(
+    var(--tray-width, 300px),
+    calc(100vw - var(--dashboard-edge-x, 16px) - var(--dashboard-edge-x, 16px))
+  );
+  height: auto;
+  max-height: var(--tray-height, calc(100vh - var(--blueprint-tray-safe-top) - var(--blueprint-tray-safe-bottom)));
+  box-sizing: border-box;
+  padding: var(--tray-padding, 18px 16px);
+  background: var(--tray-background, rgba(10, 12, 22, 0.9));
+  background-image: var(--tray-background-image, none);
+  border: 1px solid var(--tray-border-color, transparent);
+  border-radius: var(--tray-radius, 0px);
+  box-shadow: var(--tray-shadow, 0 0 32px rgba(0, 0, 0, 0.5));
+  z-index: var(--tray-z-index, 26);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Both directions come off the same knob, so a theme that flips `side` gets a
+     tray that leaves the way it arrived. */
+  transition: transform var(--tray-duration, 220ms) var(--tray-easing, ease);
+}
+
+/* The side is a data attribute rather than two classes, so the component sets
+   one value and the stylesheet decides what that means. */
+.blueprint-tray[data-side='right'] {
+  right: var(--dashboard-edge-x, 16px);
+  border-left: var(--tray-edge-width, 2px) solid var(--tray-edge-color, rgba(180, 190, 220, 0.7));
+}
+
+.blueprint-tray[data-side='left'] {
+  left: var(--dashboard-edge-x, 16px);
+  border-right: var(--tray-edge-width, 2px) solid var(--tray-edge-color, rgba(180, 190, 220, 0.7));
+}
+
+/* The open/closed offset is set by the component, not here.
+ *
+ * `side` already had to be read in JavaScript, because it decides which way a
+ * blueprint is dragged out of the tray. Deriving the transform from it in the
+ * same place means one expression owns which way the tray enters, which way it
+ * leaves, and which way the gesture goes -- instead of a CSS rule and a drag
+ * handler having to agree. The transition below still animates it, so the theme
+ * keeps its duration and easing.
+ *
+ * (An earlier comment here blamed the cascade for a tray that would not slide.
+ * That was wrong: the attribute rules were fine. The pane it was being tested in
+ * was not compositing frames, so no transform transition could advance and every
+ * value sat at its start. Left as a note because the symptom -- correct state,
+ * frozen position -- looks exactly like a specificity bug.) */
+
+.blueprint-tray-items {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: var(--tray-padding-top, 4px);
+  display: grid;
+  gap: var(--tray-gap, 12px);
+  /* A column is one column; a grid takes its count from the theme. */
+  grid-template-columns: repeat(var(--tray-columns, 1), minmax(0, 1fr));
+  justify-items: center;
+  align-content: start;
+}
+
+/* The visual scale and the scale the drag geometry computes with are the same
+   variable, on purpose. Two sources for one size is how the pixels and the maths
+   drift apart, and that drift reads as "dragging feels wrong in this theme". */
+.blueprint-tray-items > * {
+  position: relative;
+  height: calc(174px * var(--tray-blueprint-scale, 0.5));
+  width: calc(224px * var(--tray-blueprint-scale, 0.5));
+  cursor: grab;
+  touch-action: none;
+}
+
+.blueprint-tray-items > * .bot-cartridge-preview {
+  transform: scale(var(--tray-blueprint-scale, 0.5));
+  transform-origin: top left;
+}
+
+.blueprint-tray-items > [data-dragging='true'] {
+  cursor: grabbing;
+}
+
+.blueprint-tray-item-actions {
+  position: absolute;
+  right: 3px;
+  bottom: 4px;
+  z-index: 3;
+  display: flex;
+  gap: 3px;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.blueprint-tray-items > *:hover .blueprint-tray-item-actions,
+.blueprint-tray-item-actions:focus-within {
+  opacity: 1;
+}
+
+.blueprint-tray-item-actions button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid rgba(34, 232, 255, 0.72);
+  background: rgba(4, 10, 24, 0.94);
+  color: #8ff8ff;
+  font-size: 13px;
+  line-height: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 7px rgba(34, 232, 255, 0.2);
+}
+
+.blueprint-tray-item-actions button:hover,
+.blueprint-tray-item-actions button:focus-visible {
+  filter: brightness(1.35);
+}
+
+.blueprint-tray-item-actions .danger-action {
+  border-color: rgba(255, 58, 145, 0.8);
+  color: #ff82c8;
+  box-shadow: 0 0 7px rgba(255, 58, 145, 0.2);
+}
+
+/* The cell exists before the consumed board cartridge starts moving. The
+   travelling copy finishes exactly over it, then the persisted item replaces
+   both in one render. */
+.blueprint-tray-items > [data-blueprint-intake-target='true'] {
+  visibility: hidden;
+  cursor: default;
+}
+
+.blueprint-tray-empty {
+  margin: auto;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blueprint-tray {
+    transition: none;
+  }
+}
+
+/* The ghost.
+ *
+ * The blueprint never leaves the tray, so this is not a dead placeholder -- it
+ * is the same element, dimmed. It can mean "a copy is being pulled out" or "this
+ * blueprint already has its one instance in the project." Either way it remains
+ * hoverable and draggable; the refusal to instance twice belongs to logic. */
+.blueprint-tray-items > [data-ghost='true'] {
+  opacity: var(--tray-ghost-opacity, 0.35);
+  filter: grayscale(var(--tray-ghost-grayscale, 0.6));
+}
+
+/* The prompts.
+ *
+ * Fallbacks only: like the tray, the default theme sets none of these, so what
+ * is here is what an unthemed prompt looks like. Deliberately plain -- a dialog
+ * that stops the office is not the place to be clever. */
+.blueprint-prompt-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 6, 14, 0.6);
+  z-index: 60;
+}
+
+.blueprint-prompt {
+  max-width: 520px;
+  padding: 22px 24px;
+  background: var(--tray-background, rgba(10, 12, 22, 0.96));
+  border: 1px solid var(--tray-edge-color, rgba(180, 190, 220, 0.7));
+  color: inherit;
+}
+
+.blueprint-prompt-instances {
+  margin: 10px 0 16px;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+.blueprint-prompt-error {
+  margin: 0 0 14px;
+  padding: 8px 10px;
+  border-left: 3px solid rgba(255, 90, 90, 0.9);
+  background: rgba(255, 90, 90, 0.08);
+}
+
+.blueprint-prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Each button says what happens. The explanation is part of the button rather
+   than a legend somewhere else, so the consequence is read at the moment of
+   choosing rather than before or after it. */
+.blueprint-prompt-actions button span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.blueprint-edit-form {
+  display: grid;
+  gap: 12px;
+}
+
+.blueprint-edit-form label {
+  display: grid;
+  gap: 5px;
+}
+
+.blueprint-edit-form input,
+.blueprint-edit-form select,
+.blueprint-edit-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid rgba(34, 232, 255, 0.55);
+  background: rgba(3, 8, 20, 0.92);
+  color: inherit;
+  padding: 8px 10px;
+}
+
+.blueprint-prompt-actions-row {
+  flex-direction: row;
+}
+
+.blueprint-prompt-actions-row button {
+  flex: 1;
+}
+
+/* The gap.
+ *
+ * The other half of the pair with the ghost, and they are never both showing:
+ * a gap means letting go reorders, a ghost means letting go instances and the
+ * blueprint stays. Which one is visible is the answer to "what happens now".
+ *
+ * Derived from where the pointer is, at render. Nothing here is stored, so a gap
+ * cannot outlive the gesture that opened it. */
+.blueprint-tray[data-tray-columns='1'] .blueprint-tray-items > [data-gap-before='true'] {
+  margin-top: var(--tray-gap-size, 26px);
+}
+
+.blueprint-tray-items > [data-gap-tail='true'] {
+  height: 0;
+}
+
+.blueprint-tray:not([data-tray-columns='1']) .blueprint-tray-items > [data-gap-before='true']::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: calc(var(--tray-gap, 12px) / -2);
+  width: 3px;
+  border-radius: 2px;
+  background: var(--tray-edge-color, rgba(180, 190, 220, 0.9));
+  box-shadow: 0 0 10px var(--tray-edge-color, rgba(180, 190, 220, 0.75));
+  pointer-events: none;
+}
+
+.blueprint-tray:not([data-tray-columns='1']) .blueprint-tray-items > [data-gap-tail='true'] {
+  height: calc(174px * var(--tray-blueprint-scale, 0.5));
+}
+
+.blueprint-instance-line-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.blueprint-instance-line {
+  stroke: var(--tray-edge-color, rgba(180, 190, 220, 0.72));
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 8 7;
+  filter: drop-shadow(0 0 5px var(--tray-edge-color, rgba(180, 190, 220, 0.55)));
+}
+
+.blueprint-drag-preview {
+  position: fixed;
+  z-index: calc(var(--tray-z-index, 26) + 2);
+  width: calc(224px * var(--tray-blueprint-scale, 0.5));
+  height: calc(174px * var(--tray-blueprint-scale, 0.5));
+  pointer-events: none;
+  cursor: grabbing;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.38));
+}
+
+.blueprint-drag-preview .bot-cartridge-preview {
+  transform: scale(var(--tray-blueprint-scale, 0.5));
+  transform-origin: top left;
+}
+
+.blueprint-drag-preview[data-settling='true'] .bot-cartridge-preview {
+  animation: blueprint-drop-grow 420ms cubic-bezier(0.18, 0.82, 0.22, 1) forwards;
+}
+
+@keyframes blueprint-drop-grow {
+  from {
+    transform: scale(var(--tray-blueprint-scale, 0.5));
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.blueprint-intake-preview {
+  position: fixed;
+  z-index: calc(var(--tray-z-index, 26) + 3);
+  width: 224px;
+  height: 174px;
+  pointer-events: none;
+  transform-origin: top left;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.38));
+  will-change: transform, filter;
+}
+
+.blueprint-intake-preview[data-moving='true'] {
+  animation: blueprint-intake-settle 460ms cubic-bezier(0.18, 0.82, 0.22, 1) forwards;
+}
+
+@keyframes blueprint-intake-settle {
+  from {
+    transform: translate(0, 0) scale(1);
+    filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.38)) brightness(1);
+  }
+
+  72% {
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.3)) brightness(1.1);
+  }
+
+  to {
+    transform:
+      translate(var(--blueprint-intake-x, 0), var(--blueprint-intake-y, 0))
+      scale(var(--tray-blueprint-scale, 0.5));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.26)) brightness(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blueprint-intake-preview[data-moving='true'] {
+    animation-duration: 1ms;
+  }
+}

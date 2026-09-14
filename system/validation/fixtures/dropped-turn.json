@@ -1,0 +1,61 @@
+{
+  "capturedAt": "2026-08-19T00:12:35.279Z",
+  "source": "TestApp3 / Copper Circuit / ses_fe91478d2ffen5RArKJKiQIvfJ, OpenCode 1.18.18",
+  "note": "The turn the provider dropped, and the healthy turn immediately before it.",
+  "dropped": {
+    "info": {
+      "id": "msg_016fbe97f001jVDgH0v0xtBVul",
+      "sessionID": "ses_fe91478d2ffen5RArKJKiQIvfJ",
+      "role": "assistant",
+      "time": {
+        "created": 1787092003199,
+        "completed": 1787092096624
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "reasoning": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "finish": "unknown"
+    },
+    "partTypes": [
+      "step-start",
+      "reasoning",
+      "step-finish"
+    ]
+  },
+  "healthy": {
+    "info": {
+      "id": "msg_016fb01920012X6mnkcH7FuaOQ",
+      "sessionID": "ses_fe91478d2ffen5RArKJKiQIvfJ",
+      "role": "assistant",
+      "time": {
+        "created": 1787091943826,
+        "completed": 1787092003190
+      },
+      "cost": 0.0580908,
+      "tokens": {
+        "total": 73322,
+        "input": 1826,
+        "output": 2120,
+        "reasoning": 0,
+        "cache": {
+          "read": 69376,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "partTypes": [
+      "step-start",
+      "tool",
+      "tool",
+      "step-finish"
+    ]
+  }
+}

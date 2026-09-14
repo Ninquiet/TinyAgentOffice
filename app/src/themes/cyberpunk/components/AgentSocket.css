@@ -1,0 +1,282 @@
+[data-theme="cyberpunk"] .agent-slot {
+  --socket-magenta: #ff3ad7;
+  --socket-state-jaw-color: var(--socket-empty-jaw-color, #22e8ff);
+  --socket-state-rail-color: var(--socket-empty-rail-color, #22e8ff);
+  --socket-state-port-background: var(
+    --socket-empty-port-background,
+    linear-gradient(90deg, rgba(34, 232, 255, 0.18), rgba(2, 6, 23, 0.86), rgba(255, 58, 215, 0.16))
+  );
+  --socket-state-shadow: var(--socket-empty-shadow, var(--socket-form-shadow));
+  --socket-state-filter: var(--socket-empty-filter, brightness(1));
+  --socket-luminous-jaw-background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.14) 0 5px,
+      rgba(255, 255, 255, 0.04) 5px 9px,
+      rgba(2, 6, 23, 0.12) 9px 13px,
+      rgba(2, 6, 23, 0.02) 13px 15px
+    ),
+    linear-gradient(
+      90deg,
+      var(--socket-magenta) 0%,
+      color-mix(in srgb, var(--socket-magenta) 50%, var(--socket-state-jaw-color)) 50%,
+      var(--socket-state-jaw-color) 100%
+    );
+  --socket-luminous-jaw-shadow: 0 0 15px var(--socket-state-jaw-color);
+  --socket-luminous-hinge-background: linear-gradient(180deg, var(--socket-state-jaw-color), var(--socket-magenta));
+  --socket-luminous-hinge-shadow: 0 0 14px var(--socket-state-jaw-color);
+  --socket-form-clip-path: var(
+    --socket-regular-clip-path,
+    polygon(18px 0, calc(100% - 58px) 0, calc(100% - 42px) 15px, 100% 15px, 100% 66%, calc(100% - 30px) 100%, 30px 100%, 0 66%, 0 18px)
+  );
+  --socket-form-background: var(
+    --socket-regular-background,
+    linear-gradient(180deg, rgba(248, 251, 255, 0.9) 0 14px, transparent 14px),
+    linear-gradient(180deg, rgba(6, 14, 35, 0.98), rgba(2, 6, 23, 0.99))
+  );
+  --socket-form-border-color: var(--socket-regular-border-color, rgba(248, 251, 255, 0.9));
+  --socket-form-shadow: var(
+    --socket-regular-shadow,
+    0 0 28px rgba(34, 232, 255, 0.2),
+    inset 0 -16px 0 rgba(248, 251, 255, 0.08)
+  );
+  --socket-form-width: var(--socket-regular-width, 244px);
+  --socket-form-height: var(--socket-regular-height, 84px);
+  --socket-form-jaw-x: var(--socket-regular-jaw-x, 18px);
+  --socket-form-jaw-y: var(--socket-regular-jaw-y, auto);
+  --socket-form-jaw-height: var(--socket-regular-jaw-height, 13px);
+  --socket-form-jaw-background: var(
+    --socket-regular-jaw-background,
+    var(--socket-luminous-jaw-background)
+  );
+  --socket-form-jaw-clip-path: var(--socket-regular-jaw-clip-path, polygon(0 0, 100% 0, calc(100% - 16px) 100%, 16px 100%));
+  --socket-form-jaw-shadow: var(--socket-regular-jaw-shadow, var(--socket-luminous-jaw-shadow));
+  --socket-form-hinge-y: var(--socket-regular-hinge-y, 18px);
+  --socket-form-hinge-width: var(--socket-regular-hinge-width, 12px);
+  --socket-form-hinge-background: var(
+    --socket-regular-hinge-background,
+    var(--socket-luminous-hinge-background)
+  );
+  --socket-form-hinge-shadow: var(--socket-regular-hinge-shadow, var(--socket-luminous-hinge-shadow));
+  --socket-form-port-border-color: var(--socket-regular-port-border-color, rgba(248, 251, 255, 0.54));
+  --socket-form-port-width: var(--socket-regular-port-width, min(58%, 178px));
+  --socket-form-port-height: var(--socket-regular-port-height, 25px);
+  --socket-form-port-radius: var(--socket-regular-port-radius, 0);
+  --socket-form-outline-color: var(--socket-state-jaw-color);
+  --socket-form-outline-path: var(--socket-regular-outline-path);
+
+  align-self: start;
+  width: var(--socket-form-width);
+  height: var(--socket-form-height);
+  min-height: var(--socket-form-height);
+  border: 1px solid var(--socket-form-outline-color);
+  border-radius: 0;
+  outline: 0;
+  clip-path: var(--socket-form-clip-path);
+  background: var(--socket-form-background);
+  box-shadow: var(--socket-state-shadow);
+  filter: var(--socket-state-filter);
+  isolation: isolate;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+[data-theme="cyberpunk"] .project-manager-slot {
+  --socket-form-clip-path: var(--socket-project-manager-clip-path, var(--socket-regular-clip-path));
+  --socket-form-background: var(--socket-project-manager-background, var(--socket-regular-background));
+  --socket-form-border-color: var(--socket-project-manager-border-color, var(--socket-regular-border-color));
+  --socket-form-shadow: var(--socket-project-manager-shadow, var(--socket-regular-shadow));
+  --socket-form-width: var(--socket-project-manager-width, var(--socket-regular-width));
+  --socket-form-height: var(--socket-project-manager-height, var(--socket-regular-height));
+  --socket-form-jaw-x: var(--socket-project-manager-jaw-x, var(--socket-regular-jaw-x));
+  --socket-form-jaw-y: var(--socket-project-manager-jaw-y, var(--socket-regular-jaw-y));
+  --socket-form-jaw-height: var(--socket-project-manager-jaw-height, var(--socket-regular-jaw-height));
+  --socket-form-jaw-background: var(--socket-project-manager-jaw-background, var(--socket-luminous-jaw-background));
+  --socket-form-jaw-clip-path: var(--socket-project-manager-jaw-clip-path, var(--socket-regular-jaw-clip-path));
+  --socket-form-jaw-shadow: var(--socket-project-manager-jaw-shadow, var(--socket-luminous-jaw-shadow));
+  --socket-form-hinge-y: var(--socket-project-manager-hinge-y, var(--socket-regular-hinge-y));
+  --socket-form-hinge-width: var(--socket-project-manager-hinge-width, var(--socket-regular-hinge-width));
+  --socket-form-hinge-background: var(--socket-project-manager-hinge-background, var(--socket-luminous-hinge-background));
+  --socket-form-hinge-shadow: var(--socket-project-manager-hinge-shadow, var(--socket-luminous-hinge-shadow));
+  --socket-form-port-border-color: var(--socket-project-manager-port-border-color, var(--socket-regular-port-border-color));
+  --socket-form-port-width: var(--socket-project-manager-port-width, var(--socket-regular-port-width));
+  --socket-form-port-height: var(--socket-project-manager-port-height, var(--socket-regular-port-height));
+  --socket-form-port-radius: var(--socket-project-manager-port-radius, var(--socket-regular-port-radius));
+  --socket-form-outline-path: var(--socket-project-manager-outline-path, var(--socket-regular-outline-path));
+}
+
+[data-theme="cyberpunk"] .senior-pro-slot {
+  --socket-form-clip-path: var(--socket-senior-pro-clip-path, var(--socket-regular-clip-path));
+  --socket-form-background: var(--socket-senior-pro-background, var(--socket-regular-background));
+  --socket-form-border-color: var(--socket-senior-pro-border-color, var(--socket-regular-border-color));
+  --socket-form-shadow: var(--socket-senior-pro-shadow, var(--socket-regular-shadow));
+  --socket-form-width: var(--socket-senior-pro-width, var(--socket-regular-width));
+  --socket-form-height: var(--socket-senior-pro-height, var(--socket-regular-height));
+  --socket-form-jaw-x: var(--socket-senior-pro-jaw-x, var(--socket-regular-jaw-x));
+  --socket-form-jaw-y: var(--socket-senior-pro-jaw-y, var(--socket-regular-jaw-y));
+  --socket-form-jaw-height: var(--socket-senior-pro-jaw-height, var(--socket-regular-jaw-height));
+  --socket-form-jaw-background: var(--socket-senior-pro-jaw-background, var(--socket-luminous-jaw-background));
+  --socket-form-jaw-clip-path: var(--socket-senior-pro-jaw-clip-path, var(--socket-regular-jaw-clip-path));
+  --socket-form-jaw-shadow: var(--socket-senior-pro-jaw-shadow, var(--socket-luminous-jaw-shadow));
+  --socket-form-hinge-y: var(--socket-senior-pro-hinge-y, var(--socket-regular-hinge-y));
+  --socket-form-hinge-width: var(--socket-senior-pro-hinge-width, var(--socket-regular-hinge-width));
+  --socket-form-hinge-background: var(--socket-senior-pro-hinge-background, var(--socket-luminous-hinge-background));
+  --socket-form-hinge-shadow: var(--socket-senior-pro-hinge-shadow, var(--socket-luminous-hinge-shadow));
+  --socket-form-port-border-color: var(--socket-senior-pro-port-border-color, var(--socket-regular-port-border-color));
+  --socket-form-port-width: var(--socket-senior-pro-port-width, var(--socket-regular-port-width));
+  --socket-form-port-height: var(--socket-senior-pro-port-height, var(--socket-regular-port-height));
+  --socket-form-port-radius: var(--socket-senior-pro-port-radius, var(--socket-regular-port-radius));
+  --socket-form-outline-path: var(--socket-senior-pro-outline-path, var(--socket-regular-outline-path));
+}
+
+[data-theme="cyberpunk"] .socket-outline {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+[data-theme="cyberpunk"] .socket-outline-path {
+  d: var(--socket-form-outline-path);
+  fill: none;
+  stroke: var(--socket-form-outline-color);
+  stroke-width: 2;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-theme="cyberpunk"] .agent-slot[data-slot-state="connected"] {
+  --socket-state-jaw-color: var(--socket-connected-jaw-color, #2cff9a);
+  --socket-state-rail-color: var(--socket-connected-rail-color, #2cff9a);
+  --socket-state-port-background: var(--socket-connected-port-background, var(--socket-empty-port-background));
+  --socket-state-shadow: var(--socket-connected-shadow, 0 0 30px rgba(44, 255, 154, 0.28));
+  --socket-state-filter: var(--socket-connected-filter, saturate(1.18) brightness(1.08));
+}
+
+[data-theme="cyberpunk"] .agent-slot[data-slot-state="active"] {
+  --socket-state-jaw-color: var(--socket-active-jaw-color, #ff486a);
+  --socket-state-rail-color: var(--socket-active-rail-color, #ff486a);
+  --socket-state-port-background: var(--socket-active-port-background, var(--socket-empty-port-background));
+  --socket-state-shadow: var(--socket-active-shadow, 0 0 36px rgba(255, 72, 106, 0.34));
+  --socket-state-filter: var(--socket-active-filter, saturate(1.18) brightness(1.08));
+}
+
+[data-theme="cyberpunk"] .agent-slot[data-slot-state="attention"] {
+  --socket-state-jaw-color: var(--socket-attention-jaw-color, #ff486a);
+  --socket-state-rail-color: var(--socket-attention-rail-color, #ff486a);
+  --socket-state-port-background: var(--socket-attention-port-background, var(--socket-empty-port-background));
+  --socket-state-shadow: var(--socket-attention-shadow, 0 0 36px rgba(255, 72, 106, 0.34));
+  --socket-state-filter: var(--socket-attention-filter, saturate(1.4) brightness(1.22));
+}
+
+[data-theme="cyberpunk"] .agent-slot:hover,
+[data-theme="cyberpunk"] .agent-slot:focus-within {
+  --socket-state-filter: var(--socket-focus-filter, saturate(1.18) brightness(1.08));
+  transform: translateY(-2px);
+  box-shadow: 0 0 36px color-mix(in srgb, var(--socket-state-jaw-color) 32%, transparent);
+}
+
+[data-theme="cyberpunk"] .agent-slot:focus-within {
+  outline: 3px solid color-mix(in srgb, var(--socket-state-jaw-color) 70%, white);
+  outline-offset: 5px;
+}
+
+[data-theme="cyberpunk"] .agent-slot::before {
+  left: var(--socket-form-jaw-x);
+  right: 18px;
+  top: var(--socket-form-jaw-y);
+  bottom: 8px;
+  width: auto;
+  height: var(--socket-form-jaw-height);
+  border-radius: 0;
+  clip-path: var(--socket-form-jaw-clip-path);
+  background: var(--socket-form-jaw-background);
+  box-shadow: var(--socket-form-jaw-shadow);
+}
+
+[data-theme="cyberpunk"] .agent-slot::after {
+  top: var(--socket-form-hinge-y);
+  right: 15px;
+  bottom: 22px;
+  left: auto;
+  width: var(--socket-form-hinge-width);
+  height: auto;
+  border-radius: 0;
+  background: var(--socket-form-hinge-background);
+  box-shadow: var(--socket-form-hinge-shadow);
+}
+
+[data-theme="cyberpunk"] .slot-rail {
+  background: rgba(2, 6, 23, 0.86);
+  box-shadow: none;
+}
+
+[data-theme="cyberpunk"] .slot-port {
+  width: var(--socket-form-port-width);
+  height: var(--socket-form-port-height);
+  border: 1px solid var(--socket-form-port-border-color);
+  border-radius: var(--socket-form-port-radius);
+  border-color: var(--socket-form-port-border-color);
+  background: var(--socket-state-port-background);
+  box-shadow: none;
+}
+
+[data-theme="cyberpunk"] .slot-pin {
+  width: 7px;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #fff1a8, #d97706);
+  box-shadow: none;
+}
+
+[data-theme="cyberpunk"] .senior-pro-slot .slot-port {
+  width: var(--socket-senior-pro-port-width, 38px);
+  height: var(--socket-senior-pro-port-height, 112px);
+}
+
+[data-theme="cyberpunk"] .senior-pro-slot .slot-pin {
+  width: 22px;
+  height: 7px;
+}
+
+[data-theme="cyberpunk"] .agent-slot .slot-action-row,
+[data-theme="cyberpunk"] .agent-slot .slot-activate-button {
+  z-index: 5;
+}
+
+[data-theme="cyberpunk"] .agent-slot .slot-side-button,
+[data-theme="cyberpunk"] .agent-slot .slot-eject-button,
+[data-theme="cyberpunk"] .agent-slot .slot-activate-button {
+  min-height: 20px;
+  border: 1px solid color-mix(in srgb, var(--socket-state-jaw-color) 60%, rgba(248, 251, 255, 0.38));
+  border-radius: 0;
+  padding: 0 7px;
+  color: #f8fbff;
+  background: linear-gradient(180deg, rgba(5, 13, 31, 0.96), rgba(1, 4, 13, 0.98));
+  box-shadow:
+    0 0 0 1px rgba(248, 251, 255, 0.08),
+    0 0 10px color-mix(in srgb, var(--socket-state-jaw-color) 34%, transparent);
+  font-size: 10px;
+  line-height: 1;
+}
+
+[data-theme="cyberpunk"] .sp-slot-action-column {
+  inset: var(--socket-senior-pro-control-inset, 7px 6px 14px 18px);
+  justify-items: var(--socket-senior-pro-control-justify, end);
+}
+
+[data-theme="cyberpunk"] .senior-pro-slot .slot-side-button,
+[data-theme="cyberpunk"] .senior-pro-slot .slot-eject-button,
+[data-theme="cyberpunk"] .senior-pro-slot .slot-activate-button {
+  width: var(--socket-senior-pro-control-width, 62px);
+  min-width: var(--socket-senior-pro-control-min-width, 62px);
+  padding: var(--socket-senior-pro-control-padding, 0 3px);
+  font-size: var(--socket-senior-pro-control-font-size, 9px);
+}

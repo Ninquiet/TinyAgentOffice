@@ -1,0 +1,5 @@
+@import './styles/tokens-and-shell.css';
+@import './styles/layout-and-tasks.css';
+@import './styles/dialogs-and-panels.css';
+@import './styles/cartridges-and-terminals.css';
+@import './styles/start-window.css';

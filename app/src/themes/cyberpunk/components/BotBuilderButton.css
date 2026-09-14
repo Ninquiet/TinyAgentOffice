@@ -1,0 +1,98 @@
+/* Cyberpunk BotBuilderButton theme overrides. */
+
+[data-theme="cyberpunk"] .bot-builder-button {
+  position: relative;
+  width: var(--builder-button-width, 94px);
+  min-height: var(--builder-button-height, 173px);
+  height: var(--builder-button-height, 173px);
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  isolation: isolate;
+}
+
+[data-theme="cyberpunk"] .bot-builder-button::before {
+  content: "";
+  position: absolute;
+  inset: 3px 8px 6px 5px;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 54% 28%, rgba(0, 229, 255, 0.18), transparent 42%),
+    linear-gradient(180deg, rgba(3, 12, 28, 0.82), rgba(1, 5, 14, 0.94));
+  clip-path: polygon(8% 6%, 91% 6%, 98% 10%, 98% 95%, 88% 100%, 33% 100%, 4% 73%, 4% 9%);
+  filter:
+    drop-shadow(0 0 8px rgba(0, 229, 255, 0.4))
+    drop-shadow(0 0 16px rgba(244, 114, 208, 0.18));
+}
+
+[data-theme="cyberpunk"] .bot-builder-button:hover {
+  transform: translateY(-2px);
+}
+
+[data-theme="cyberpunk"] .bot-builder-button:active {
+  transform: translateY(0);
+}
+
+[data-theme="cyberpunk"] .bot-builder-button:focus-visible {
+  outline: 0;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 229, 255, 0.92))
+    drop-shadow(0 0 16px rgba(0, 229, 255, 0.48));
+}
+
+[data-theme="cyberpunk"] .bot-builder-button .builder-avatar {
+  display: none;
+}
+
+[data-theme="cyberpunk"] .builder-theme-frame,
+[data-theme="cyberpunk"] .builder-theme-icon {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+[data-theme="cyberpunk"] .builder-theme-frame {
+  left: var(--builder-frame-x, 0);
+  top: var(--builder-frame-y, 0);
+  z-index: 2;
+  width: var(--builder-frame-width, 100%);
+  height: var(--builder-frame-height, 100%);
+  background: #00e5ff;
+  -webkit-mask: url('../assets/build-bot-button.svg') center / 100% 100% no-repeat;
+  mask: url('../assets/build-bot-button.svg') center / 100% 100% no-repeat;
+  filter:
+    drop-shadow(0 0 3px rgba(0, 229, 255, 0.98))
+    drop-shadow(0 0 9px rgba(0, 229, 255, 0.7))
+    drop-shadow(0 0 18px rgba(14, 165, 233, 0.48));
+}
+
+[data-theme="cyberpunk"] .builder-theme-icon {
+  left: var(--builder-icon-x, -23px);
+  top: var(--builder-icon-y, 24px);
+  z-index: 1;
+  width: var(--builder-icon-width, 126px);
+  height: var(--builder-icon-height, 126px);
+  background: url('../assets/TinyAgentOffice test.png') center / contain no-repeat;
+  image-rendering: pixelated;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 229, 255, 0.35))
+    drop-shadow(0 0 14px rgba(244, 114, 208, 0.28));
+}
+
+[data-theme="cyberpunk"] .bot-builder-button:hover .builder-theme-frame {
+  background: #5ff7ff;
+  filter:
+    drop-shadow(0 0 4px rgba(95, 247, 255, 1))
+    drop-shadow(0 0 12px rgba(0, 229, 255, 0.88))
+    drop-shadow(0 0 24px rgba(244, 114, 208, 0.44));
+}
+
+[data-theme="cyberpunk"] .bot-builder-button:hover .builder-theme-icon {
+  filter:
+    drop-shadow(0 0 7px rgba(0, 229, 255, 0.5))
+    drop-shadow(0 0 18px rgba(244, 114, 208, 0.4));
+}

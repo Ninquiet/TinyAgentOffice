@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260">
+<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M20 210V48L48 20H315"/>
+  <path d="M38 230V62L60 40H345"/>
+  <path d="M58 250V82L78 62H364"/>
+  <path d="M20 160H128L214 76H338"/>
+  <path d="M20 170H132"/>
+  <path d="M22 195L42 175V120"/>
+</g>
+<g fill="#fff">
+  <path d="M58 44h14l-12 14H46z"/>
+  <path d="M76 44h14L78 58H64z"/>
+  <path d="M94 44h14L96 58H82z"/>
+</g>
+</svg>

@@ -1,0 +1,137 @@
+@keyframes builder-screen-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes builder-screen-rise {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.96);
+  }
+}
+
+@keyframes builder-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes builder-overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes secretary-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(-120px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes secretary-panel-out {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-120px) scale(0.98);
+  }
+}
+
+@keyframes secretary-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes secretary-overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* The shift comes from --cartridge-options-shift, measured when the menu opens
+   so it stays inside the window. It has to be composed here rather than set as
+   an inline transform: a running animation with fill "both" overrides inline
+   transforms permanently, which silently threw the correction away. */
+@keyframes cartridge-options-in {
+  from {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--cartridge-options-shift, 0px)), -6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--cartridge-options-shift, 0px)), 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .bot-builder-button {
+    width: 82px;
+  }
+}
+
+@media (max-width: 620px) {
+  .secretary-button {
+    width: 72px;
+    height: 72px;
+  }
+
+  .left-control-rail {
+    left: 12px;
+  }
+
+  .auto-mode-toggle {
+    width: 80px;
+  }
+
+  .secretary-speech-bubble {
+    width: 150px;
+  }
+
+  .task-slide-sheet {
+    width: 100vw;
+    height: 82vh;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .task-sheet-row {
+    grid-template-columns: 1fr;
+  }
+
+  .secretary-notification-card {
+    grid-template-columns: 1fr;
+  }
+
+  .bot-builder-button {
+    width: 72px;
+    min-height: 64px;
+  }
+
+  .builder-preview-row {
+    grid-template-columns: 1fr;
+  }
+
+  .create-bot-button {
+    min-height: 54px;
+  }
+}

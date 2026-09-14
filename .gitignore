@@ -1,0 +1,97 @@
+# ---------------------------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------------------------
+node_modules/
+
+# package-lock.json is intentionally NOT ignored — it belongs in the repo.
+
+# ---------------------------------------------------------------------------
+# Build output
+# ---------------------------------------------------------------------------
+# Vite output. Source assets live in app/src, so nothing original is lost here.
+app/dist/
+dist/
+build/
+out/
+release/
+*.tsbuildinfo
+
+# ---------------------------------------------------------------------------
+# Coordination runtime state
+# ---------------------------------------------------------------------------
+# The SQLite runtime and its JSON mirrors are per-machine live state, not source.
+# They churn on every run and the lock file has already caused contention issues.
+# This covers the app's own workspace, dev-sandbox/, and any coordinated project
+# that happens to live inside the repo.
+**/.tiny-agent-office/coordination/runtime.db
+**/.tiny-agent-office/coordination/runtime.db-shm
+**/.tiny-agent-office/coordination/runtime.db-wal
+**/.tiny-agent-office/coordination/runtime.db.lock
+**/.tiny-agent-office/coordination/tasks.json
+**/.tiny-agent-office/coordination/agents.json
+**/.tiny-agent-office/coordination/runs.json
+**/.tiny-agent-office/coordination/registry.json
+**/.tiny-agent-office/logs/
+**/.tiny-agent-office/attachments/
+
+# Kept on purpose: .tiny-agent-office/AGENTS.md, agents-principles.md,
+# general-context.md, project.json and daemon-fleet.json are configuration
+# and prompt material, not runtime state.
+
+# ---------------------------------------------------------------------------
+# Local app state
+# ---------------------------------------------------------------------------
+# Everything in runtime/ is per-machine app state: which projects this user has
+# opened, the blueprint tray they keep to hand. None of it is source.
+#
+# Ignored as a directory rather than file by file, on purpose. The per-file form
+# meant every new piece of local state was born untracked-but-not-ignored, and
+# stayed that way until somebody remembered to add a line -- a rule that depends
+# on memory, and `git add -A` does not wait for memory. Now the default is safe
+# and versioning something here takes a deliberate un-ignore below.
+runtime/
+# Nothing here yet. Un-ignore explicitly if runtime/ ever holds real source:
+# !runtime/something-that-belongs-in-git.json
+
+# PIDs of the dev launcher and its children. Live state for this machine only.
+runtime/dev-processes.json
+
+# ---------------------------------------------------------------------------
+# Logs and diagnostics
+# ---------------------------------------------------------------------------
+*.log
+npm-debug.log*
+logs/
+
+# ---------------------------------------------------------------------------
+# Environment and secrets
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------------------
+# Editor and OS
+# ---------------------------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.swp
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# Project-local development material
+# ---------------------------------------------------------------------------
+# These folders contain machine-local coordination state, design experiments,
+# handoff notes, and scratch projects. None of them belongs in a public release.
+/.tiny-agent-office/
+/TEMP/
+/ERASEME/
+/dev-sandbox/
+/TrabajoBlackBoxBirdTestApp3/
+/newUIPlan.md
+/docs/reference/
