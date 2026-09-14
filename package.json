@@ -2,7 +2,9 @@
   "name": "tiny-agent-office",
   "version": "0.1.0",
   "description": "A desktop office for coordinating role-based coding agents across projects.",
+  "author": "Ninquiet",
   "private": true,
+  "main": "desktop/main.cjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ninquiet/TinyAgentOffice.git"
@@ -12,7 +14,7 @@
     "url": "https://github.com/Ninquiet/TinyAgentOffice/issues"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13"
   },
   "scripts": {
     "precheck": "npm run check:agent-memory && npm run check:secretary-inbox",
@@ -24,6 +26,7 @@
     "init:project": "node system/project/init-project.js --project",
     "start:desktop": "electron desktop/main.cjs",
     "start:desktop:dev": "node desktop/dev-launcher.cjs",
+    "dist:win": "npm run build:web && electron-builder --win portable",
     "check": "tsc --project app/tsconfig.json --noEmit && node system/validation/validate-opencode-session-matching.js && node system/validation/validate-session-state.js && node system/validation/validate-session-state-store.js && node system/validation/validate-transition-log.js && node system/validation/validate-prompt-ledger.js && node system/validation/validate-watchdog-merge.js && node system/validation/validate-prompt-delivery.js && node system/validation/validate-ledger-closure.js && node system/validation/validate-scheduler.js && node system/validation/validate-runtime-state-publication.js && node system/validation/validate-dispatch-refusal.js && node system/validation/validate-session-key-resolution.js && node system/validation/validate-field-ownership.js && node system/validation/validate-store-contention.js && node system/validation/validate-prompt-usage.js && node system/validation/validate-coordination-regressions.js && node system/validation/validate-dropped-turn-release.js && node system/validation/validate-project-cartridges.js && node system/validation/validate-cartridge-view.js && node system/validation/validate-cartridge-merge.js && node system/validation/validate-cartridge-placement-materialization.js && node system/validation/validate-cartridge-label-role.js && node system/validation/validate-broadcast-handling.js && node system/validation/validate-check-registration.js && node system/validation/validate-refusal-handling.js && node system/validation/validate-state-names.js && node system/validation/validate-blueprint-store.js && node system/validation/validate-cartridge-geometry.js && node system/validation/validate-tray-theme-contract.js && node system/validation/validate-socket-theme-contract.js && node system/validation/validate-socket-theme-integration.js && node system/validation/validate-cyberpunk-polygon-outlines.js && node system/validation/validate-auto-mode-toggle.js && node system/validation/validate-tray-drag-affordance.js && node system/validation/validate-tray-safe-region.js && node system/validation/validate-start-window.js && node system/validation/validate-pointer-drag.js && node system/validation/validate-instancing.js && node system/validation/validate-blueprint-reach.js && node system/validation/validate-blueprint-outcomes.js && node system/validation/validate-blueprint-ui-wiring.js && node system/validation/validate-tray-ordering.js && node system/validation/validate-superseded-archive.js && node system/validation/validate-task-graph-integrity.js && node system/validation/validate-assign-contention.js",
     "check:agent-memory": "node system/validation/validate-agent-memory.js && node system/validation/validate-agent-memory-route.js",
     "check:secretary-inbox": "node system/validation/validate-secretary-inbox.js",
@@ -31,18 +34,49 @@
     "check:all": "npm run check && npm run check:scenarios"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.7",
-    "typescript": "^5.7.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zustand": "^5.0.2",
-    "electron": "^33.3.1",
-    "ws": "^8.18.0"
+    "ws": "^8.18.0",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2"
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^44.3.0",
+    "electron-builder": "^26.15.3",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "build": {
+    "appId": "com.ninquiet.tinyagentoffice",
+    "productName": "TinyAgentOffice",
+    "artifactName": "TinyAgentOffice-${version}-Windows-${arch}.${ext}",
+    "asar": false,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "app/dist/**/*",
+      "desktop/main.cjs",
+      "desktop/preload.cjs",
+      "system/**/*",
+      "AGENTS.md",
+      "agents-principles.md",
+      "package.json",
+      "!system/validation/**/*",
+      "!system/validate-assign-contention.js"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
   }
 }

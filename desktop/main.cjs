@@ -1,7 +1,8 @@
 'use strict';
 
 const path = require('path');
-const { spawn } = require('child_process');
+const fs = require('fs');
+const { spawn, spawnSync } = require('child_process');
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -10,14 +11,33 @@ const DEV_SERVER_URL = process.env.AGENTS_COORDINATOR_DESKTOP_URL || '';
 const PROJECT_ROOT = process.env.TAO_PROJECT_ROOT || process.cwd();
 let serverProcess = null;
 
+function resolveNodePath() {
+  if (process.env.npm_node_execpath) return process.env.npm_node_execpath;
+  if (process.env.NODE) return process.env.NODE;
+  if (process.platform === 'win32') {
+    const lookup = spawnSync('where.exe', ['node'], { encoding: 'utf8', windowsHide: true });
+    const firstMatch = lookup.stdout?.split(/\r?\n/).find(Boolean);
+    if (firstMatch) return firstMatch.trim();
+  }
+  return 'node';
+}
+
+function appendDesktopLog(message) {
+  const logPath = path.join(app.getPath('userData'), 'desktop.log');
+  fs.appendFileSync(logPath, `${new Date().toISOString()} ${message}\n`);
+}
+
 function startServer() {
   const script = path.join(ROOT, 'system', 'dashboard-server.js');
-  const nodePath = process.env.npm_node_execpath || process.env.NODE || 'node';
+  const nodePath = resolveNodePath();
+  appendDesktopLog(`Starting backend with ${nodePath} on port ${DASHBOARD_PORT}`);
   serverProcess = spawn(nodePath, [script, '--port', String(DASHBOARD_PORT), '--project', PROJECT_ROOT], {
     cwd: ROOT,
     stdio: 'ignore',
     windowsHide: true,
   });
+  serverProcess.on('error', (error) => appendDesktopLog(`Backend spawn failed: ${error.stack || error}`));
+  serverProcess.on('exit', (code, signal) => appendDesktopLog(`Backend exited: code=${code} signal=${signal}`));
 }
 
 function createWindow() {

@@ -3,7 +3,7 @@
 TinyAgentOffice is a Windows-first desktop dashboard for coordinating multiple coding agents inside a project. Agents live in visual cartridges, connect to role-aware sockets, share a structured task board, and retain project-local memory between sessions.
 
 > [!IMPORTANT]
-> **v0.1.0 is an early source release.** It is ready to explore and develop, but it does not yet include a packaged installer. The current runtime integration targets [OpenCode](https://opencode.ai/en/docs).
+> **v0.1.0 is an early release.** A portable Windows build is available from [GitHub Releases](https://github.com/Ninquiet/TinyAgentOffice/releases), and the project can also be run from source. The current runtime integration targets [OpenCode](https://opencode.ai/en/docs).
 
 ![TinyAgentOffice cyberpunk dashboard](docs/screenshots/dashboard.png)
 
@@ -23,7 +23,7 @@ TinyAgentOffice is a Windows-first desktop dashboard for coordinating multiple c
 ## Requirements
 
 - Windows 10 or Windows 11.
-- Node.js 20 or newer and npm.
+- Node.js 22.13 or newer and npm. The portable app also needs `node` available on `PATH` for its local coordination backend.
 - The OpenCode CLI installed and configured with the model providers you want to use.
 
 Install OpenCode through npm:
@@ -35,6 +35,8 @@ npm install -g opencode-ai
 Then run `opencode` once and connect your provider before launching agents from TinyAgentOffice. See the [official OpenCode setup guide](https://opencode.ai/en/docs) for other installation methods.
 
 ## Quick start
+
+Download the portable Windows executable from [GitHub Releases](https://github.com/Ninquiet/TinyAgentOffice/releases), or run TinyAgentOffice from source:
 
 ```powershell
 git clone https://github.com/Ninquiet/TinyAgentOffice.git
@@ -61,6 +63,7 @@ npm run start:desktop
 | `npm run start:desktop:dev` | Start the backend, Vite, and Electron with live reload. |
 | `npm run build:web` | Build the dashboard into `app/dist`. |
 | `npm run start:desktop` | Start Electron using the built dashboard. |
+| `npm run dist:win` | Build the portable Windows executable into the ignored `release/` directory. |
 | `npm run init:project -- --project "C:\path\to\project"` | Initialize TinyAgentOffice files in a project. |
 | `npm run check` | Run TypeScript and the fast regression suite. |
 | `npm run check:all` | Run the fast suite plus end-to-end scenarios. |
@@ -80,7 +83,7 @@ OpenCode and the model providers configured in OpenCode have their own data and 
 ## Current limitations
 
 - The current desktop and terminal-window integration is Windows-first.
-- v0.1.0 is distributed as source; packaging and an installer are future work.
+- The Windows build is currently portable and unsigned, so Windows may display a SmartScreen warning.
 - OpenCode is the only implemented agent runtime.
 - The interface is optimized for a desktop window of at least `1250 × 950`.
 - This is an early release, so back up important projects before experimenting with automated agent workflows.
