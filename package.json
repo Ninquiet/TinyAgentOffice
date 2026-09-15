@@ -1,8 +1,12 @@
 {
   "name": "tiny-agent-office",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A desktop office for coordinating role-based coding agents across projects.",
-  "author": "Ninquiet",
+  "author": {
+    "name": "Jesus David Angarita",
+    "url": "https://www.linkedin.com/in/ninquiet/"
+  },
+  "license": "PolyForm-Noncommercial-1.0.0",
   "private": true,
   "main": "desktop/main.cjs",
   "repository": {

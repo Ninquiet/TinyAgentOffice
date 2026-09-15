@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const { spawn, spawnSync } = require('child_process');
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 
 const ROOT = path.resolve(__dirname, '..');
 const DASHBOARD_PORT = Number(process.env.AGENTS_COORDINATOR_PORT || 5188);
@@ -71,6 +71,12 @@ ipcMain.handle('desktop:choose-project-folder', async () => {
   });
   if (result.canceled || !result.filePaths.length) return null;
   return result.filePaths[0];
+});
+
+ipcMain.handle('desktop:open-external', async (_event, rawUrl) => {
+  const url = new URL(String(rawUrl));
+  if (url.protocol !== 'https:') throw new Error('Only HTTPS links can be opened externally.');
+  await shell.openExternal(url.toString());
 });
 
 app.whenReady().then(() => {

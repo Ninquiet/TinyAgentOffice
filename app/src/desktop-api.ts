@@ -2,6 +2,7 @@ export interface AgentsCoordinatorDesktopApi {
   isDesktop: true;
   closeApp: () => Promise<void>;
   chooseProjectFolder: () => Promise<string | null>;
+  openExternal: (url: string) => Promise<void>;
 }
 
 declare global {

@@ -116,10 +116,30 @@ function assertKeyboardFocusRemainsVisible() {
   console.log('Start window: keyboard focus has visible styling inside and outside the recent list.');
 }
 
+function assertAuthorCreditIsVisibleAndSafe() {
+  const css = fs.readFileSync(CSS, 'utf8');
+  const component = fs.readFileSync(COMPONENT, 'utf8');
+  const desktopApi = fs.readFileSync(path.join(APP, 'desktop-api.ts'), 'utf8');
+  const preload = fs.readFileSync(path.join(__dirname, '..', '..', 'desktop', 'preload.cjs'), 'utf8');
+  const main = fs.readFileSync(path.join(__dirname, '..', '..', 'desktop', 'main.cjs'), 'utf8');
+
+  assert.ok(component.includes('Creado por Jesus David Angarita'), 'the chooser must display the requested author credit');
+  assert.ok(component.includes('https://www.linkedin.com/in/ninquiet/'), 'the author credit must target the requested LinkedIn profile');
+  assert.ok(component.includes('aria-label="LinkedIn de Jesus David Angarita"'), 'the LinkedIn icon needs an accessible label');
+  assert.ok(/\.start-author-credit\s*\{/.test(css), 'the author credit needs a dedicated layout rule');
+  assert.ok(desktopApi.includes('openExternal'), 'the renderer API must expose safe external-link opening');
+  assert.ok(preload.includes("ipcRenderer.invoke('desktop:open-external'"), 'the preload must bridge external links through IPC');
+  assert.ok(main.includes("ipcMain.handle('desktop:open-external'"), 'the Electron main process must own external navigation');
+  assert.ok(main.includes('shell.openExternal'), 'external URLs must open in the system browser');
+
+  console.log('Start window: author credit is visible and LinkedIn opens through the desktop shell.');
+}
+
 function main() {
   assertStartWindowOwnsItsDarkPalette();
   assertRecentProjectsAreTheOnlyScrollableArea();
   assertKeyboardFocusRemainsVisible();
+  assertAuthorCreditIsVisibleAndSafe();
   console.log('Start window validation passed.');
 }
 

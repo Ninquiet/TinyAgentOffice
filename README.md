@@ -1,9 +1,9 @@
 # TinyAgentOffice
 
-TinyAgentOffice is a Windows-first desktop dashboard for coordinating multiple coding agents inside a project. Agents live in visual cartridges, connect to role-aware sockets, share a structured task board, and retain project-local memory between sessions.
+TinyAgentOffice is a source-available, Windows-first desktop dashboard for coordinating multiple coding agents inside a project. Agents live in visual cartridges, connect to role-aware sockets, share a structured task board, and retain project-local memory between sessions.
 
 > [!IMPORTANT]
-> **v0.1.0 is an early release.** A portable Windows build is available from [GitHub Releases](https://github.com/Ninquiet/TinyAgentOffice/releases), and the project can also be run from source. The current runtime integration targets [OpenCode](https://opencode.ai/en/docs).
+> **v0.1.1 is an early release.** A portable Windows build is available from [GitHub Releases](https://github.com/Ninquiet/TinyAgentOffice/releases), and the project can also be run from source. The current runtime integration targets [OpenCode](https://opencode.ai/en/docs).
 
 ![TinyAgentOffice cyberpunk dashboard](docs/screenshots/dashboard.png)
 
@@ -108,6 +108,12 @@ npm run check:all
 
 Please avoid committing API keys, provider credentials, runtime databases, project-local agent memories, logs, or screenshots containing private project information.
 
+## License
+
+TinyAgentOffice is available under the [PolyForm Noncommercial License 1.0.0](LICENSE). You may inspect, use, modify, and redistribute it for noncommercial purposes. Commercial use, including selling the software or derivatives, is not permitted without a separate license from Jesus David Angarita.
+
+Created by [Jesus David Angarita](https://www.linkedin.com/in/ninquiet/).
+
 ## Release status
 
-This repository captures the first usable TinyAgentOffice milestone: **v0.1.0**. Future ideas will be developed incrementally instead of delaying this initial release.
+This repository captures the first usable TinyAgentOffice milestone and its licensed public build: **v0.1.1**. Future ideas will be developed incrementally instead of delaying this initial release.

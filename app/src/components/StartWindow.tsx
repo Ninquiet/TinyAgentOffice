@@ -7,6 +7,7 @@ interface StartWindowProps {
 }
 
 export function StartWindow({ onProjectOpened }: StartWindowProps) {
+  const linkedInUrl = 'https://www.linkedin.com/in/ninquiet/';
   const [recentProjects, setRecentProjects] = useState<RecentProject[]>([]);
   const [manualPath, setManualPath] = useState('');
   const [message, setMessage] = useState('');
@@ -56,6 +57,14 @@ export function StartWindow({ onProjectOpened }: StartWindowProps) {
       setManualPath(folder);
       await openProjectRoot(folder);
     }
+  }
+
+  async function openLinkedIn() {
+    if (desktopApi?.openExternal) {
+      await desktopApi.openExternal(linkedInUrl);
+      return;
+    }
+    window.open(linkedInUrl, '_blank', 'noopener,noreferrer');
   }
 
   return (
@@ -115,6 +124,15 @@ export function StartWindow({ onProjectOpened }: StartWindowProps) {
         </section>
 
         {message ? <p className="start-message">{message}</p> : null}
+
+        <footer className="start-author-credit">
+          <span>Creado por Jesus David Angarita</span>
+          <button type="button" onClick={() => void openLinkedIn()} aria-label="LinkedIn de Jesus David Angarita">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5.1 3.5a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2ZM3.3 9.2h3.6v11.3H3.3V9.2Zm5.8 0h3.4v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.4 2.4 4.4 5.6v6.1h-3.6v-5.4c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9v5.5H9.1V9.2Z" />
+            </svg>
+          </button>
+        </footer>
       </section>
     </main>
   );
